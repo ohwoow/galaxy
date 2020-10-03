@@ -83,17 +83,26 @@ handlesSlider.noUiSlider.on('update', function (values, handle) {
 
 const filterSelect = document.querySelectorAll('.filter-select')
 
+
 filterSelect.forEach(select => {
+  const filterSelectHeader = select.querySelector('.filter-select__header')
+  const filterSelectItem = select.querySelectorAll('.filter-select__item')
 
-  select.addEventListener('click', function (e) {
-    const target = e.target
 
-    if (e.currentTarget.classList.contains('filter-select')) {
-      this.classList.add('_active')
+  filterSelectHeader.addEventListener('click', (e) => {
+    select.classList.add('_active')
+
+    if (e.target.classList.contains('filter-select__close')) {
+      select.classList.remove('_active')
     }
-
   })
 
+
+  filterSelectItem.forEach(item => {
+    item.addEventListener('click', () => {
+      select.classList.remove('_active')
+    })
+  })
 })
 
 // Mob menu
@@ -101,8 +110,56 @@ filterSelect.forEach(select => {
 const btnHam = document.querySelector('.btn-burger')
 const headerNav = document.querySelector('.header__nav')
 
-btnHam.addEventListener('click', function() {
+btnHam.addEventListener('click', function () {
   this.classList.toggle('active')
 
   headerNav.classList.toggle('active')
+})
+
+// Menu on desctop
+
+window.addEventListener('scroll', () => {
+  const headerScroll = document.querySelector('.header_scroll')
+
+  if (scrollY > 300) {
+    headerScroll.classList.add('active')
+  } else {
+    headerScroll.classList.remove('active')
+  }
+})
+
+window.addEventListener('resize', () => {
+  const headerScroll = document.querySelector('.header_scroll')
+  if (innerWidth <= 992) {
+    headerScroll.remove()
+  }
+})
+
+// Modal
+
+const contactsBtn = document.querySelectorAll('.contacts-hero__btn')
+const modalFeedback = document.querySelector('.modal-feedback')
+const modalPolitics = document.querySelector('.modal-politics')
+const modalCloseBtn = document.querySelectorAll('.modal__close')
+const politics = document.querySelector('.form-feedback__checkbox-text a')
+
+
+
+function modalClose() {
+  modalFeedback.classList.remove('active')
+  modalPolitics.classList.remove('active')
+}
+
+contactsBtn.forEach(btn => {
+  btn.addEventListener('click', () => {
+    modalFeedback.classList.add('active')
+  })
+})
+
+modalCloseBtn.forEach(btn => {
+  btn.addEventListener('click', modalClose)
+})
+
+politics.addEventListener('click', (evt) => {
+  modalPolitics.classList.add('active')
 })
