@@ -163,3 +163,5 @@ modalCloseBtn.forEach(btn => {
 politics.addEventListener('click', (evt) => {
   modalPolitics.classList.add('active')
 })
+
+
