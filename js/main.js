@@ -91,12 +91,7 @@ filterSelect.forEach(select => {
 
   filterSelectHeader.addEventListener('click', (e) => {
     select.classList.add('_active')
-
-    if (e.target.classList.contains('filter-select__close')) {
-      select.classList.remove('_active')
-    }
   })
-
 
   filterSelectItem.forEach(item => {
     item.addEventListener('click', () => {
@@ -107,13 +102,17 @@ filterSelect.forEach(select => {
 
 // Mob menu
 
-const btnHam = document.querySelector('.btn-burger')
-const headerNav = document.querySelector('.header__nav')
+const btnHam = document.querySelectorAll('.btn-burger')
+const headerNav = document.querySelectorAll('.header__nav')
 
-btnHam.addEventListener('click', function () {
-  this.classList.toggle('active')
-
-  headerNav.classList.toggle('active')
+btnHam.forEach(btn => {
+  btn.addEventListener('click', function () {
+    this.classList.toggle('active')
+  
+    headerNav.forEach(item => {
+      item.classList.toggle('active')
+    })
+  })
 })
 
 // Menu on desctop
@@ -161,6 +160,7 @@ modalCloseBtn.forEach(btn => {
 })
 
 politics.addEventListener('click', (evt) => {
+  evt.preventDefault()
   modalPolitics.classList.add('active')
 })
 
