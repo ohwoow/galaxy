@@ -2,6 +2,7 @@
 
 const heroSlider = new Swiper('.slider-hero', {
   slidesPerView: 1,
+  loop: true,
 
   pagination: {
     el: '.slider-pag',
@@ -44,18 +45,6 @@ const worksSlider = new Swiper('.works-portfolio__slider', {
     nextEl: '.works-portfolio__arrow_next',
     prevEl: '.works-portfolio__arrow_prev',
   },
-  // breakpoints: {
-  //   // when window width is >= 640px
-  //   1900: {
-  //     slidesPerView: 6,
-  //   },
-  //   992: {
-  //     slidesPerView: 4,
-  //   },
-  //   420: {
-  //     slidesPerView: 3,
-  //   }
-  // }
 })
 
 const handlesSlider = document.querySelector('.filter-portfolio__cost');
