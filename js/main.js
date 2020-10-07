@@ -115,13 +115,17 @@ window.addEventListener('scroll', () => {
     headerScroll.classList.remove('active')
   }
 })
+const headerScroll = document.querySelector('.header_scroll')
 
 window.addEventListener('resize', () => {
-  const headerScroll = document.querySelector('.header_scroll')
   if (innerWidth <= 992) {
     headerScroll.remove()
   }
 })
+
+if (window.innerWidth <= 992) {
+  headerScroll.remove()
+}
 
 // Modal
 
@@ -136,11 +140,13 @@ const politics = document.querySelector('.form-feedback__checkbox-text a')
 function modalClose() {
   modalFeedback.classList.remove('active')
   modalPolitics.classList.remove('active')
+  document.body.classList.remove('lock')
 }
 
 contactsBtn.forEach(btn => {
   btn.addEventListener('click', () => {
     modalFeedback.classList.add('active')
+    document.body.classList.add('lock')
   })
 })
 
@@ -151,6 +157,7 @@ modalCloseBtn.forEach(btn => {
 politics.addEventListener('click', (evt) => {
   evt.preventDefault()
   modalPolitics.classList.add('active')
+  document.body.classList.add('lock')
 })
 
 
